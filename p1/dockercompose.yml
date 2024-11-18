@@ -1,0 +1,28 @@
+services:
+  busybox:
+    container_name: host_hbelle
+    image: busybox
+    command: tail -f /dev/null
+    networks:
+      - badass
+
+  frr:
+    container_name: routeur_hbelle
+    build:
+      context: ./frrouting
+      dockerfile: Dockerfile
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
+    privileged: true
+    ports:
+      - "179:179"
+      - "2601:2601"
+      - "2604-2610:2604-2610"
+    networks:
+      - badass
+
+networks:
+  badass:
+    driver: bridge
