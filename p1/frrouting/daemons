@@ -1,0 +1,53 @@
+# This configuration file is used to manage the FRRouting (FRR) daemons and their options.
+# 
+#
+# Sections:
+# 1. Required Services:
+#    - Lists the daemons that are enabled (set to "yes") and required for the routing setup.
+#    - Example: zebra, bgpd, ospfd, isisd.
+#
+# 2. Non-Required Services:
+#    - Lists the daemons that are disabled (set to "no") and not required for the routing setup.
+#    - Example: ospf6d, ripd, ripngd, pimd, etc.
+#
+# 3. VTY Configuration:
+#    - Enables or disables the VTY shell (vtysh) for managing FRR daemons.
+#    - Example: vtysh_enable=yes.
+#
+# 4. Daemon Options:
+#    - Specifies additional options for each enabled daemon.
+#    - Example: zebra_options, bgpd_options, ospfd_options, isisd_options.
+#    - Common options include binding to a specific IP address (e.g., 127.0.0.1) and other performance-related settings.
+
+
+# Services requis
+zebra=yes
+bgpd=yes
+ospfd=yes
+isisd=yes
+
+# Services non requis (désactivés)
+ospf6d=no
+ripd=no
+ripngd=no
+pimd=no
+pim6d=no
+ldpd=no
+nhrpd=no
+eigrpd=no
+babeld=no
+sharpd=no
+pbrd=no
+bfdd=no
+fabricd=no
+vrrpd=no
+pathd=no
+
+# Configuration VTY
+vtysh_enable=yes
+
+# Options des daemons
+zebra_options="  -A 127.0.0.1 -s 90000000"
+bgpd_options="   -A 127.0.0.1"
+ospfd_options="  -A 127.0.0.1"
+isisd_options="  -A 127.0.0.1"
