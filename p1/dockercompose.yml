@@ -9,6 +9,14 @@ services:
     build:
       context: ./frrouting
       dockerfile: Dockerfile
+    volumes:
+      - ./frrouting/frr.conf:/etc/frr/frr.conf
+      - ./frrouting/daemons:/etc/frr/daemons
+    command: "chown -R frr:frr /etc/frr && \
+              chmod 640 /etc/frr/frr.conf && \
+              chmod 640 /etc/frr/daemons && \
+              chmod +x start.sh"
+    entrypoint: ["/bin/bash", "-c", "start.sh"]
     container_name: routeur_hbelle
     ulimits:
       nofile:
